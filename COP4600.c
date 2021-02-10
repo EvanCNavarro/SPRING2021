@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
 
@@ -47,7 +48,7 @@ int main(int argc, char** argv) {
     }
 
     //Create History Array
-    char** historyArray = (char**) calloc(historyArraySize, sizeof(char*));
+    char** historyArray = calloc(historyArraySize, sizeof(char*));
 
     char cwd[PATH_MAX];
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
