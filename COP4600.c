@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
     }
 
     //Create History Array
-    char** historyArray = calloc(historyArraySize, sizeof(char*));
+    char** historyArray = (char**) calloc(historyArraySize, sizeof(char*));
 
     char cwd[PATH_MAX];
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
