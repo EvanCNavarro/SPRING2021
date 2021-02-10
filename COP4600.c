@@ -5,6 +5,9 @@
 //Default size for the History Array, if the file does NOT exist
 #define DEFAULT_HISTORY_SIZE 100
 
+
+void introduction();
+
 int main(int argc, char** argv) {
 
     introduction();
@@ -64,6 +67,6 @@ void introduction() {
     char* formatting = "---------------------------------------------";
 
     //Intro Text
-    printf("\n%s\nHello, and welcome to the 'mysh' C Program!\n( Created by Evan C. Navarro (UID: 3037941), for COP 4600's HW#3. )\nThis program acts as a replacement to the Unix Command Shell.\nEnter a command after the \'#\' below, like \'help'\ to get started.\n%s\n", formatting, formatting);
+    printf("\n%s\nHello, and welcome to the \'mysh\' C Program!\n( Created by Evan C. Navarro (UID: 3037941), for COP 4600\'s HW#3. )\nThis program acts as a replacement to the Unix Command Shell.\nEnter a command after the \'#\' below, like \'help'\ to get started.\n%s\n", formatting, formatting);
 
 }
