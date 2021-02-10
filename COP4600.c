@@ -5,9 +5,6 @@
 //Default size for the History Array, if the file does NOT exist
 #define DEFAULT_HISTORY_SIZE 100
 
-
-void introduction();
-
 int main(int argc, char** argv) {
 
     introduction();
