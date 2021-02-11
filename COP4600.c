@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <limits.h>
-#include <unistd.h>
+//#include <unistd.h>
 
 
 //Default size for the History Array, if the file does NOT exist
@@ -11,8 +12,8 @@
 
 
 void introduction();
-void whereami();
-void quit(char** historyArray, int fileLineCount);
+//void whereami();
+void save(char** historyArray, int fileLineCount);
 
 int fileLineCount = 0;
 int main(int argc, char** argv) {
@@ -77,11 +78,37 @@ int main(int argc, char** argv) {
 
     printf("\nHello\n");
 
-    whereami();
+    //while byebye != true
+    //get input
+    //parse
+    //return token value
+    //switch case
+    //byebye 
+    //clear
+    //history
+    //replay history
+    //whereami
+    //movetodir
+    //start program
+    //background program
+    //dalek pid
+    //repeat n command
+    char userInput[20][MAX_COMMAND_SIZE] = { '\0' };
 
 
-    quit(historyArray, fileLineCount);
 
+    do {
+
+        printf("# ");
+        scanf("%s", userInput);
+        printf("check YOUR INPUT: %s", userInput);
+        char userInput[MAX_COMMAND_SIZE] = { '\0' };
+        printf("\n\n%s Userinput check>>", *userInput);
+    } while (!feof(stdin));
+
+    save(historyArray, fileLineCount);
+
+    //whereami();
 
     return 0;
 }
@@ -96,7 +123,7 @@ void introduction() {
     printf("\n%s\nHello, and welcome to the \'mysh\' C Program!\n( Created by Evan C. Navarro (UID: 3037941), for COP 4600's HW#3. )\nThis program acts as a replacement to the Unix Command Shell.\nEnter a command after the \'#\' below, like \'help\' to get started.\n%s\n", formatting, formatting);
 
 }
-
+/*
 void whereami() {
     char currentdir[PATH_MAX];
     if (getcwd(currentdir, sizeof(currentdir)) != NULL) {
@@ -104,14 +131,12 @@ void whereami() {
     }
     else {
         perror("getcwd() error");
-        return 1;
     }
 }
-
-void quit(char **historyArray, int fileLineCount) {
+*/
+void save(char **historyArray, int fileLineCount) {
     FILE* historyTextFile = fopen("history.txt", "w+");
     for (int i = 0; i < fileLineCount; i++) {
         fputs(historyArray[i], historyTextFile);
     }
-    exit(1);
 }
