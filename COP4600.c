@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
-//#include <unistd.h>
+#include <unistd.h>
 
 
 //Default size for the History Array, if the file does NOT exist
@@ -11,6 +11,7 @@
 
 
 void introduction();
+void whereami();
 void quit(char** historyArray, int fileLineCount);
 
 int fileLineCount = 0;
@@ -76,34 +77,7 @@ int main(int argc, char** argv) {
 
     printf("\nHello\n");
 
-   
-    int tot = 0;
-    int i = 0;
-    char line[50][120];
-
-    fclose(historyTextFile);
-    historyTextFile = fopen("history.txt", "r+");
-    while (fgets(line[i], MAX_COMMAND_SIZE, historyTextFile))
-    {
-        line[i][strlen(line[i]) - 1] = '\0';
-        i++;
-    }
-    tot = i;
-    printf("\n The content of the file: \n");
-    for (i = 0; i < tot; ++i)
-    {
-        printf(" %s\n", line[i]);
-    }
-    printf("\n");
-    
-    char currentdir[PATH_MAX];
-    if (getcwd(currentdir, sizeof(currentdir)) != NULL) {
-        printf("\nCurrent working dir: %s\n", currentdir);
-    }
-    else {
-        perror("getcwd() error");
-        return 1;
-    }
+    whereami();
 
 
     quit(historyArray, fileLineCount);
@@ -121,6 +95,17 @@ void introduction() {
     //Intro Text
     printf("\n%s\nHello, and welcome to the \'mysh\' C Program!\n( Created by Evan C. Navarro (UID: 3037941), for COP 4600's HW#3. )\nThis program acts as a replacement to the Unix Command Shell.\nEnter a command after the \'#\' below, like \'help\' to get started.\n%s\n", formatting, formatting);
 
+}
+
+void whereami() {
+    char currentdir[PATH_MAX];
+    if (getcwd(currentdir, sizeof(currentdir)) != NULL) {
+        printf("\nCurrent Directory: %s\n", currentdir);
+    }
+    else {
+        perror("getcwd() error");
+        return 1;
+    }
 }
 
 void quit(char **historyArray, int fileLineCount) {
