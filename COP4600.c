@@ -10,6 +10,11 @@
 #define DEFAULT_HISTORY_SIZE 100
 #define MAX_COMMAND_SIZE 500
 
+static char* acceptedCommands[] = {
+    "byebye", "clear", "history", "replay",
+    "whereami", "movetodir", "start", "background",
+    "dalek", "repeat", "dalekall", "help"
+};
 
 void introduction();
 //void whereami();
@@ -93,22 +98,109 @@ int main(int argc, char** argv) {
     //background program
     //dalek pid
     //repeat n command
-    char userInput[20][MAX_COMMAND_SIZE] = { '\0' };
 
+    char userInput[MAX_COMMAND_SIZE];
 
+    while (!feof(stdin)) {
+        fgets(userInput, MAX_COMMAND_SIZE, stdin);
+        historyArray[fileLineCount] = (char*)calloc(historyArraySize, sizeof(userInput + 1));
+        strcpy(historyArray[fileLineCount], userInput);
+        fileLineCount++;
 
-    do {
+        printf("\nHistory:\n");
+        for (int i = 1; i <= fileLineCount; i++) {
+            printf("Entry #%d:\t%s", i, historyArray[fileLineCount - i]);
+        }
 
-        printf("# ");
-        scanf("%s", userInput);
-        printf("check YOUR INPUT: %s", userInput);
-        char userInput[MAX_COMMAND_SIZE] = { '\0' };
-        printf("\n\n%s Userinput check>>", *userInput);
-    } while (!feof(stdin));
+        char* args[70];
+        char** arg;
+        arg = args;
+        *arg++ = strtok(userInput, " \n");
+        while ((*arg++ = strtok(NULL, " \n")));
+
+        /*
+        static char* acceptedCommands[] = {
+            "byebye", "clear", "history", "replay",
+            "whereami", "movetodir", "start", "background",
+            "dalek", "repeat", "dalekall", "help"
+        };
+        */
+
+        int commandNumber = 20;
+
+        for (int i = 0; i < sizeof(acceptedCommands); i++) {
+            if (!strcmp(args[0], acceptedCommands[i])) {
+                commandNumber = i;
+                printf("%d", i);
+                break;
+            }
+        }
+
+        switch (commandNumber) {
+            case 0: {
+                break;
+            }
+
+            case 1: {
+                printf("clear");
+            }
+            
+            case 2: {
+                printf("clear");
+            }
+
+            case 3: {
+                printf("clear");
+            }
+
+            case 4: {
+                printf("clear");
+            }
+
+            case 5: {
+                printf("clear");
+            }
+
+            case 6: {
+                printf("clear");
+            }
+
+            case 7: {
+                printf("clear");
+            }
+
+            case 8: {
+                printf("clear");
+            }
+
+            case 9: {
+                printf("clear");
+            }
+
+            case 10: {
+                printf("clear");
+            }
+
+            case 11: {
+                printf("clear");
+            }
+
+            case 12: {
+                printf("clear");
+            }
+
+            default: {
+                printf("DEFAULT -----\n\n");
+            }
+        }
+
+        printf("Should not print...\n");
+
+    }
+
+    printf("\n\nEXITED\n\n");
 
     save(historyArray, fileLineCount);
-
-    //whereami();
 
     return 0;
 }
